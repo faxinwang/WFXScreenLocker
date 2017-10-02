@@ -62,12 +62,17 @@ namespace LockScreen
                     return 1;
                 }
 
+                if(kbh.vkCode == (int)Keys.Tab && Control.ModifierKeys ==(Keys.Alt | Keys.Control))
+                {
+                    //拦截 Ctrl + Alt + Tab
+                    return 1;
+                }
+
                 if (kbh.vkCode == (int)Keys.Delete && (int)Control.ModifierKeys ==  ( (int)Keys.Alt | (int)Keys.Control))
                 {
                  //   MessageBox.Show("捕捉到Ctrl+Alt+Delete");
                     return 1;
                 }
-                
                 
             }
             return 0;
@@ -161,6 +166,9 @@ namespace LockScreen
             if (a <= 0) a = 0;
             Color col = Color.FromArgb(a, oldCol.R, oldCol.G, oldCol.B);
             panel1.BackColor = col;
+
+            //设置焦点到输入控件上.
+            TBox_pwd.Focus();
             
             //循环改变锁屏窗体的透明度
             if(flag == true)
@@ -197,6 +205,10 @@ namespace LockScreen
                 //关闭当前窗体，打开程序主状体;
                 hook.UnhookWindowsHookEx();
                 new MainForm().Show();
+                timer.Stop();
+                timer.Dispose();
+                KillTaskManager.Stop();
+                KillTaskManager.Dispose();
                 this.Close();
             }else
             {
@@ -208,17 +220,7 @@ namespace LockScreen
         {
             if(e.KeyCode == Keys.Enter)
             {
-                if (PWD == Win32API.MD5_Str(TBox_pwd.Text.Trim()))
-                {
-                    //关闭当前窗体，打开程序主状体;
-                    hook.UnhookWindowsHookEx();
-                    new MainForm().Show();
-                    this.Close();
-                }
-                else
-                {
-                    onWrongPassword();
-                }
+                button1_Click(sender, e);
             }
         }
     }
