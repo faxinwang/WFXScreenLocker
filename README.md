@@ -42,6 +42,8 @@ C:\Users\ _YourUserName_ \AppData\Roaming\Microsoft\Windows\Start Menu\Programs\
 
 ![opacity80](https://github.com/faxinwang/WFXScreenLocker/raw/master/imgs/opacity80.png '百分之80的透明度')
 
+![opacity80](https://github.com/faxinwang/WFXScreenLocker/raw/master/imgs/opacity100.png '百分之80的透明度')
+
 ![notPass1](https://github.com/faxinwang/WFXScreenLocker/raw/master/imgs/notPass1.png '输入密码错误1')
 
 ![notPass2](https://github.com/faxinwang/WFXScreenLocker/raw/master/imgs/notPass2.png '输入密码错误2')
