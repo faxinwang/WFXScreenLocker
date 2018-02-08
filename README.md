@@ -36,26 +36,18 @@ C:\Users\ _YourUserName_ \AppData\Roaming\Microsoft\Windows\Start Menu\Programs\
 
 ## 截图
 
-主界面:
-![main](https://github.com/faxinwang/WFXScreenLocker/raw/master/imgs/main.png)
+![main](https://github.com/faxinwang/WFXScreenLocker/raw/master/imgs/main.png '主界面')
 
-百分之30的透明度
-![opacity30](https://github.com/faxinwang/WFXScreenLocker/raw/master/imgs/opacity30.png)
+![opacity30](https://github.com/faxinwang/WFXScreenLocker/raw/master/imgs/opacity30.png '百分之30的透明度')
 
-百分之80的透明度
-![opacity80](https://github.com/faxinwang/WFXScreenLocker/raw/master/imgs/opacity80.png)
+![opacity80](https://github.com/faxinwang/WFXScreenLocker/raw/master/imgs/opacity80.png '百分之80的透明度')
 
-输入密码错误1
-![notPass1](https://github.com/faxinwang/WFXScreenLocker/raw/master/imgs/notPass1.png)
+![notPass1](https://github.com/faxinwang/WFXScreenLocker/raw/master/imgs/notPass1.png '输入密码错误1')
 
-输入密码错误2
-![notPass2](https://github.com/faxinwang/WFXScreenLocker/raw/master/imgs/notPass2.png)
+![notPass2](https://github.com/faxinwang/WFXScreenLocker/raw/master/imgs/notPass2.png '输入密码错误2')
 
-修改解锁密码
-![changePassword](https://github.com/faxinwang/WFXScreenLocker/raw/master/imgs/changePassword.png)
+![changePassword](https://github.com/faxinwang/WFXScreenLocker/raw/master/imgs/changePassword.png '修改解锁密码')
 
-修改锁屏颜色
-![changeColor](https://github.com/faxinwang/WFXScreenLocker/raw/master/imgs/changeColor.png)
+![changeColor](https://github.com/faxinwang/WFXScreenLocker/raw/master/imgs/changeColor.png '修改锁屏颜色')
 
-修改锁屏窗体透明度
-![changeOpacity](https://github.com/faxinwang/WFXScreenLocker/raw/master/imgs/changeOpacity.png)
+![changeOpacity](https://github.com/faxinwang/WFXScreenLocker/raw/master/imgs/changeOpacity.png '修改锁屏窗体透明度')
