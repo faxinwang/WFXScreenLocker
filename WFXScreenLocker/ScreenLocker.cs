@@ -223,5 +223,24 @@ namespace LockScreen
                 button1_Click(sender, e);
             }
         }
+
+        //判断窗口关闭事件是否由用户点击右上角关闭按钮引发的.如果是,则整个程序退出.否则就只是关闭该窗体.
+        protected override void WndProc(ref Message msg)
+        {
+            //Windows系统消息，winuser.h文件中有WM_...的定义
+            //十六进制数字，0x是前导符后面是真正的数字
+            const int WM_SYSCOMMAND = 0x0112;
+            //winuser.h文件中有SC_...的定义
+            const int SC_CLOSE = 0xF060;
+
+            if (msg.Msg == WM_SYSCOMMAND && ((int)msg.WParam == SC_CLOSE))
+            {
+                // 点击winform右上关闭按钮 
+                // 加入想要的逻辑处理
+                //Application.Exit();
+                return;//阻止了窗体关闭
+            }
+            base.WndProc(ref msg);
+        }
     }
 }
