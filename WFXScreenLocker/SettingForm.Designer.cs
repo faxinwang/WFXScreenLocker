@@ -112,11 +112,11 @@
             this.groupBox2.Controls.Add(this.TBox_pwd3);
             this.groupBox2.Controls.Add(this.TBox_pwd2);
             this.groupBox2.Controls.Add(this.TBox_pwd1);
-            this.groupBox2.Location = new System.Drawing.Point(93, 77);
+            this.groupBox2.Location = new System.Drawing.Point(63, 71);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(0);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(0);
-            this.groupBox2.Size = new System.Drawing.Size(314, 212);
+            this.groupBox2.Size = new System.Drawing.Size(376, 218);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             // 
@@ -149,26 +149,26 @@
             // 
             // TBox_pwd3
             // 
-            this.TBox_pwd3.Location = new System.Drawing.Point(113, 142);
+            this.TBox_pwd3.Location = new System.Drawing.Point(95, 142);
             this.TBox_pwd3.Name = "TBox_pwd3";
-            this.TBox_pwd3.PasswordChar = '$';
-            this.TBox_pwd3.Size = new System.Drawing.Size(170, 21);
+            this.TBox_pwd3.PasswordChar = '码';
+            this.TBox_pwd3.Size = new System.Drawing.Size(228, 21);
             this.TBox_pwd3.TabIndex = 3;
             // 
             // TBox_pwd2
             // 
-            this.TBox_pwd2.Location = new System.Drawing.Point(113, 82);
+            this.TBox_pwd2.Location = new System.Drawing.Point(95, 82);
             this.TBox_pwd2.Name = "TBox_pwd2";
-            this.TBox_pwd2.PasswordChar = '$';
-            this.TBox_pwd2.Size = new System.Drawing.Size(170, 21);
+            this.TBox_pwd2.PasswordChar = '密';
+            this.TBox_pwd2.Size = new System.Drawing.Size(228, 21);
             this.TBox_pwd2.TabIndex = 2;
             // 
             // TBox_pwd1
             // 
-            this.TBox_pwd1.Location = new System.Drawing.Point(113, 30);
+            this.TBox_pwd1.Location = new System.Drawing.Point(95, 30);
             this.TBox_pwd1.Name = "TBox_pwd1";
-            this.TBox_pwd1.PasswordChar = '$';
-            this.TBox_pwd1.Size = new System.Drawing.Size(170, 21);
+            this.TBox_pwd1.PasswordChar = '*';
+            this.TBox_pwd1.Size = new System.Drawing.Size(228, 21);
             this.TBox_pwd1.TabIndex = 1;
             // 
             // tabControl1
@@ -395,6 +395,7 @@
             this.ClientSize = new System.Drawing.Size(510, 378);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SettingForm";

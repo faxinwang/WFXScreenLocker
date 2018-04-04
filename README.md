@@ -53,3 +53,11 @@ C:\Users\ _YourUserName_ \AppData\Roaming\Microsoft\Windows\Start Menu\Programs\
 ![changeColor](https://github.com/faxinwang/WFXScreenLocker/raw/master/imgs/changeColor.png '修改锁屏颜色')
 
 ![changeOpacity](https://github.com/faxinwang/WFXScreenLocker/raw/master/imgs/changeOpacity.png '修改锁屏窗体透明度')
+
+## 更新
+
+2018/4/4
+
+>1. 增加了<kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>L</kbd>锁屏快捷键
+>2. 增加了锁屏密码长度不能超过16位的限制
+>3. 修改了“修改秘密“界面密码框的回显字符

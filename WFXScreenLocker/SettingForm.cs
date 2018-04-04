@@ -75,6 +75,11 @@ namespace LockScreen
             {
                 string pwd2 = TBox_pwd2.Text.Trim();
                 string pwd3 = TBox_pwd3.Text.Trim();
+                if(pwd2.Length > 16)
+                {
+                    MessageBox.Show("密码长度不能超过16位");
+                    return;
+                }
                 if (pwd2 == pwd3 && pwd2 != "")
                 {
                     try

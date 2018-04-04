@@ -8,11 +8,9 @@ namespace LockScreen
 {
     public partial class ScreenLocker : Form
     {
-        //  Win32API.HookProc KeyBoardProcedure;
         Hook.HOOKPROC hookProc;
         Hook hook;
-        static int hHook = 0;       //钩子函数的句柄
-        public const int WH_KeyBoard = 13;
+
         private string PWD = null;
         Random rand = new Random();
 
@@ -22,17 +20,6 @@ namespace LockScreen
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
         System.Windows.Forms.Timer KillTaskManager = new System.Windows.Forms.Timer();
 
-        //钩子结构函数
-        public struct KeyBoardHookStruct
-        {
-            public int vkCode;
-            public int ScandCode;
-            public int flags;
-            public int time;
-            public int ExtraInfo;
-        }
-
-
 
         public int MyKeyboardProc(int nCode, int wParam, IntPtr lParam)
         {
@@ -41,18 +28,18 @@ namespace LockScreen
                 KeyBoardHookStruct kbh = (KeyBoardHookStruct)Marshal.PtrToStructure(lParam, typeof(KeyBoardHookStruct));
                 if (kbh.vkCode == (int)Keys.LWin )
                 {
-                //    MessageBox.Show("拦截了Win键");
+                    //MessageBox.Show("拦截了Win键");
                     return 1;
                 }
                 if(kbh.vkCode == (int)Keys.F4 && Control.ModifierKeys == Keys.Alt)
                 {
-                 //   MessageBox.Show("拦截了Alt+F4");
+                    //MessageBox.Show("拦截了Alt+F4");
                     return 1;
                 }
 
                 if(kbh.vkCode == (int)Keys.Tab && Control.ModifierKeys == Keys.Alt)
                 {
-                //    MessageBox.Show("拦截了Alt+Tab");
+                    //MessageBox.Show("拦截了Alt+Tab");
                     return 1;
                 }
 
@@ -82,29 +69,25 @@ namespace LockScreen
         //安装键盘钩子
         public void HookStart()
         {
-            
-            if(hHook == 0)
-            {
-               try
-               {
-                    //实例化一个HookProc
-                    //  KeyBoardProcedure = new Win32API.HookProc(KeyBoardHookProc);
-                    hookProc = new Hook.HOOKPROC(MyKeyboardProc);
-                    hook = new GlobalHook(hookProc);
-
-                    if( hook.SetWindowsHookEx() ==0 )
-                    {
-                        //卸载钩子
-                        hook.UnhookWindowsHookEx();
-                        MessageBox.Show("安装钩子失败!" );
-                        Application.Exit();
-                    }
-               }catch(Exception exc)
+           try
+           {
+                //实例化一个HookProc
+                //  KeyBoardProcedure = new Win32API.HookProc(KeyBoardHookProc);
+                hookProc = new Hook.HOOKPROC(MyKeyboardProc);
+                hook = new GlobalHook(hookProc);
+                hook.hHook = hook.SetWindowsHookEx();
+                if( hook.hHook == 0 )
                 {
-                    MessageBox.Show("安装钩子失败:" + exc.Message);
+                    //卸载钩子
+                    hook.UnhookWindowsHookEx();
+                    MessageBox.Show("安装钩子失败!" );
                     Application.Exit();
                 }
-            }
+           }catch(Exception exc)
+           {
+                MessageBox.Show("安装钩子失败:" + exc.Message);
+                Application.Exit();
+           }
         }
         
 
@@ -144,7 +127,7 @@ namespace LockScreen
             KillTaskManager.Start();
 
             //启动Hook,截获键盘事件
-            HookStart();            
+            HookStart(); 
         }
 
         private void KillTaskManager_Tick(object sender, EventArgs e)
@@ -216,11 +199,21 @@ namespace LockScreen
             }
         }
 
+        /// <summary>
+        /// Enter键结束输入，否则检测并限制密码长度在16位以内。
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TBox_pwd_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.KeyCode == Keys.Enter)
             {
                 button1_Click(sender, e);
+            }
+            else
+            {
+                if (TBox_pwd.TextLength >= 16)
+                    TBox_pwd.Text = TBox_pwd.Text.Substring(0, 15);
             }
         }
 

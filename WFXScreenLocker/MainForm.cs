@@ -3,12 +3,14 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
+using System.Runtime.InteropServices;
 
 
 namespace LockScreen
 {
     public partial class MainForm : Form
     {
+        Hook hook;
 
         public MainForm()
         {
@@ -21,13 +23,38 @@ namespace LockScreen
             //设置两个按钮的背景颜色为半透明
             Btn_lock.BackColor = ColorTranslator.FromHtml("#33ee0000");
             Btn_set.BackColor = ColorTranslator.FromHtml("#3300ee00");
+
+            //设置Ctrl + Alt + L锁屏快捷键.
+            hook = new GlobalHook(new Hook.HOOKPROC(myKeyboardHookProc));
+            try
+            {
+                hook.hHook = hook.SetWindowsHookEx();
+            }
+            catch (Exception exc) { }
+        }
+
+        private int myKeyboardHookProc(int nCode, int wParam, IntPtr lParam)
+        {
+
+            KeyBoardHookStruct kbh = (KeyBoardHookStruct)Marshal.PtrToStructure(lParam, typeof(KeyBoardHookStruct));
+            if (kbh.vkCode == (int)(Keys.L) && Control.ModifierKeys == (Keys.Control | Keys.Alt))
+            {
+                lockScreen();
+                return 1;
+            }
+            return Win32API.CallNextHookEx(hook.hHook, nCode, wParam, lParam);
+        }
+
+        private void lockScreen()
+        {
+            hook.UnhookWindowsHookEx();
+            new ScreenLocker().Show();
+            this.Dispose();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-            new ScreenLocker().Show();
-            this.Dispose();
+            lockScreen();
         }
 
         //打开设置界面
@@ -53,7 +80,8 @@ namespace LockScreen
             }
         }
 
-        //判断窗口关闭事件是否由用户点击右上角关闭按钮引发的.如果是,则整个程序退出.否则就只是关闭该窗体.
+        //判断窗口关闭事件是否由用户点击右上角关闭按钮引发的.
+        //如果是,则整个程序退出.否则就只是关闭该窗体.
         protected override void WndProc(ref Message msg)
         {
             //Windows系统消息，winuser.h文件中有WM_...的定义
@@ -72,5 +100,25 @@ namespace LockScreen
             base.WndProc(ref msg);
         }
 
+        /*
+        //Ctrl + Alt + L 快捷键锁屏
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Modifiers == (Keys.Control | Keys.Alt) && e.KeyCode == Keys.L )
+            {
+                lockScreen();
+            }
+        }
+
+        //获取全局键盘事件, 如果是Ctrl+Alt+L锁屏快捷键，则进行锁屏
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if(keyData == (Keys.Control | Keys.Alt | Keys.L) )
+            {
+                lockScreen();
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+        */
     }
 }

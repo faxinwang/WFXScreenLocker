@@ -7,6 +7,16 @@ using System.Threading.Tasks;
 
 namespace LockScreen
 {
+    //钩子结构函数
+    public struct KeyBoardHookStruct
+    {
+        public int vkCode;
+        public int ScandCode;
+        public int flags;
+        public int time;
+        public int ExtraInfo;
+    }
+
     public abstract class Hook
     {
 
