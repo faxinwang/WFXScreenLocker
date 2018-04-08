@@ -61,3 +61,8 @@ C:\Users\ _YourUserName_ \AppData\Roaming\Microsoft\Windows\Start Menu\Programs\
 >1. 增加了<kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>L</kbd>锁屏快捷键
 >2. 增加了锁屏密码长度不能超过16位的限制
 >3. 修改了“修改秘密“界面密码框的回显字符
+
+2018/4/8
+
+>1. [修复]锁屏时其他窗体会变成顶层窗体的问题。
+>2. [增加]锁屏时屏蔽其他程序的快捷键

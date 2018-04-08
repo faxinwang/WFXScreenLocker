@@ -60,7 +60,16 @@ namespace LockScreen
                  //   MessageBox.Show("捕捉到Ctrl+Alt+Delete");
                     return 1;
                 }
+
+                //屏蔽掉其他程序的快捷键
+                if (Control.ModifierKeys == Keys.Control) return 1;
+                if (Control.ModifierKeys == Keys.Alt) return 1;
                 
+                //if (Control.ModifierKeys == Keys.Shift) return 1;
+                if (Control.ModifierKeys == (Keys.Control | Keys.Alt)) return 1;
+                if (Control.ModifierKeys == (Keys.Control | Keys.Shift)) return 1;
+                if (Control.ModifierKeys == (Keys.Alt | Keys.Shift)) return 1;
+                if (Control.ModifierKeys == (Keys.Control | Keys.Alt | Keys.Shift)) return 1;
             }
             return 0;
            // return Win32API.CallNextHookEx(hHook, nCode, wParam, lParam);
@@ -149,6 +158,9 @@ namespace LockScreen
             if (a <= 0) a = 0;
             Color col = Color.FromArgb(a, oldCol.R, oldCol.G, oldCol.B);
             panel1.BackColor = col;
+
+            //防止锁屏过程中其他窗体变成了顶层窗体。
+            this.TopMost = true;
 
             //设置焦点到输入控件上.
             TBox_pwd.Focus();
