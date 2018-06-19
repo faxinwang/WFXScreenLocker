@@ -19,7 +19,8 @@ namespace LockScreen
                                "password=" +Win32API.MD5_Str("author_wfx"),
                                "color=#9157C5",
                                "maxOpacity=90",
-                               "minOpacity=30"
+                               "minOpacity=30",
+                               "autoRun=false"
                 };
                 File.AppendAllLines(iniFilePath, lines);
                 MessageBox.Show("您是第一次运行该程序!\n初始解锁秘密为 : author_wfx \n请牢记!");
@@ -72,5 +73,23 @@ namespace LockScreen
         {
             Win32API.WritePrivateProfileString("config", "minOpacity", minOpacity.ToString(), iniFilePath);
         }
+
+        public static void setOpenRun(bool autoRun)
+        {
+            string value = autoRun.ToString();
+            Console.WriteLine(value);
+            Win32API.WritePrivateProfileString("config", "autoRun", value, iniFilePath);
+        }
+
+        public static bool getOpenRun()
+        {
+            StringBuilder sb = new StringBuilder();
+            Win32API.GetPrivateProfileString("config", "autoRun", "", sb, 255, iniFilePath);
+            string value = sb.ToString().ToLower();
+            if ("true".Equals(value)) return true;
+            return false;
+
+        }
+
     }
 }

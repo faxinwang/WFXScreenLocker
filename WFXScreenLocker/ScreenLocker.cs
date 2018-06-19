@@ -61,18 +61,22 @@ namespace LockScreen
                     return 1;
                 }
 
+
                 //屏蔽掉其他程序的快捷键
-                if (Control.ModifierKeys == Keys.Control) return 1;
-                if (Control.ModifierKeys == Keys.Alt) return 1;
                 
-                //if (Control.ModifierKeys == Keys.Shift) return 1;
-                if (Control.ModifierKeys == (Keys.Control | Keys.Alt)) return 1;
-                if (Control.ModifierKeys == (Keys.Control | Keys.Shift)) return 1;
-                if (Control.ModifierKeys == (Keys.Alt | Keys.Shift)) return 1;
-                if (Control.ModifierKeys == (Keys.Control | Keys.Alt | Keys.Shift)) return 1;
+                if (((int)Control.ModifierKeys & (int)Keys.Control) != 0)
+                {
+                    //Console.WriteLine("control pressed");
+                    return 0;
+                }
+                if (((int)Control.ModifierKeys & (int)Keys.Alt) != 0)
+                {
+                    //Console.WriteLine("alt pressed");
+                    return 0;
+                }
             }
-            return 0;
-           // return Win32API.CallNextHookEx(hHook, nCode, wParam, lParam);
+            //return 0;
+            return Win32API.CallNextHookEx(hook.hHook, nCode, wParam, lParam);
         }
 
         //安装键盘钩子
@@ -227,25 +231,6 @@ namespace LockScreen
                 if (TBox_pwd.TextLength >= 16)
                     TBox_pwd.Text = TBox_pwd.Text.Substring(0, 15);
             }
-        }
-
-        //判断窗口关闭事件是否由用户点击右上角关闭按钮引发的.如果是,则整个程序退出.否则就只是关闭该窗体.
-        protected override void WndProc(ref Message msg)
-        {
-            //Windows系统消息，winuser.h文件中有WM_...的定义
-            //十六进制数字，0x是前导符后面是真正的数字
-            const int WM_SYSCOMMAND = 0x0112;
-            //winuser.h文件中有SC_...的定义
-            const int SC_CLOSE = 0xF060;
-
-            if (msg.Msg == WM_SYSCOMMAND && ((int)msg.WParam == SC_CLOSE))
-            {
-                // 点击winform右上关闭按钮 
-                // 加入想要的逻辑处理
-                //Application.Exit();
-                return;//阻止了窗体关闭
-            }
-            base.WndProc(ref msg);
         }
     }
 }

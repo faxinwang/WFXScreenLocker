@@ -30,7 +30,7 @@ namespace LockScreen
             {
                 hook.hHook = hook.SetWindowsHookEx();
             }
-            catch (Exception exc) { }
+            catch (Exception exc) { Console.WriteLine(exc.Message); }
         }
 
         private int myKeyboardHookProc(int nCode, int wParam, IntPtr lParam)
@@ -42,6 +42,7 @@ namespace LockScreen
                 lockScreen();
                 return 1;
             }
+            //return 0;
             return Win32API.CallNextHookEx(hook.hHook, nCode, wParam, lParam);
         }
 
@@ -94,6 +95,9 @@ namespace LockScreen
             {
                 // 点击winform右上关闭按钮 
                 // 加入想要的逻辑处理
+                //卸载快捷键键盘钩子
+                hook.UnhookWindowsHookEx();
+                notifyIcon.Dispose();
                 Application.Exit();
                 //return;//阻止了窗体关闭
             }

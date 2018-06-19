@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Win32;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,8 +22,13 @@ namespace LockScreen
             Panel_oldColor.BackColor = Utils.getLookScreenColor();
             trackBar_maxOpac.Value = Utils.getMaxOpacity();
             trackBar_minOpac.Value = Utils.getMinOpacity();
+            tab4_cbox_openRun.Checked = Utils.getOpenRun();
             lab_maxOpac.Text = "最大不透明度: " + trackBar_maxOpac.Value;
             lab_minOpac.Text = "最小不透明度: " + trackBar_minOpac.Value;
+            Color color = Utils.getLookScreenColor();
+            TrackBar_R.Value = color.R;
+            TrackBar_G.Value = color.G;
+            TrackBar_B.Value = color.B;
 
             TrackBar_R.Scroll += TrackBar_Scroll;
             TrackBar_G.Scroll += TrackBar_Scroll;
@@ -30,6 +36,7 @@ namespace LockScreen
             tab1_btn_cancel.Click += new EventHandler(closeWindow);
             tab2_btn_cancel.Click += new EventHandler(closeWindow);
             tab3_btn_cancel.Click += new EventHandler(closeWindow);
+            tab4_btn_cancel.Click += new EventHandler(closeWindow);
             trackBar_maxOpac.Scroll += TrackBar_maxOpac_Scroll;
             trackBar_minOpac.Scroll += TrackBar_minOpac_Scroll;
         }
@@ -143,6 +150,26 @@ namespace LockScreen
         {
             Utils.setMaxOpacity(trackBar_maxOpac.Value);
             Utils.setMinOpacity(trackBar_minOpac.Value);
+            this.Close();
+        }
+
+        /// <summary>
+        /// 根据设置状体开启或关闭开机自启动, 并更新配置文件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tab4_btn_ok_Click(object sender, EventArgs e)
+        {
+            bool autoRun = tab4_cbox_openRun.Checked;
+            string exePath = Application.ExecutablePath.Replace('/', '\\');
+            string appName = exePath.Substring(exePath.LastIndexOf("\\") + 1);
+            //第二个参数true表示对该注册表项可读可写
+            RegistryKey runKey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run",true);
+            if (runKey == null)
+                runKey = Registry.LocalMachine.CreateSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run");
+            if (autoRun) runKey.SetValue(appName, exePath); //设置为开机自启动
+            else runKey.SetValue(appName, false); //取消开机自启动设置
+            Utils.setOpenRun(autoRun); //将设置写入配置文件
             this.Close();
         }
     }

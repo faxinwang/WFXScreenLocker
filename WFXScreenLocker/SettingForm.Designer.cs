@@ -59,6 +59,10 @@
             this.lab_minOpac = new System.Windows.Forms.Label();
             this.trackBar_maxOpac = new System.Windows.Forms.TrackBar();
             this.trackBar_minOpac = new System.Windows.Forms.TrackBar();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tab4_btn_cancel = new System.Windows.Forms.Button();
+            this.tab4_btn_ok = new System.Windows.Forms.Button();
+            this.tab4_cbox_openRun = new System.Windows.Forms.CheckBox();
             this.TabPage_SetPwd.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -69,6 +73,7 @@
             this.TabPage_setOpacity.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_maxOpac)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_minOpac)).BeginInit();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // TabPage_SetPwd
@@ -176,6 +181,7 @@
             this.tabControl1.Controls.Add(this.TabPage_SetPwd);
             this.tabControl1.Controls.Add(this.TabPage_SetColor);
             this.tabControl1.Controls.Add(this.TabPage_setOpacity);
+            this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Location = new System.Drawing.Point(-2, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -355,18 +361,16 @@
             this.lab_maxOpac.AutoSize = true;
             this.lab_maxOpac.Location = new System.Drawing.Point(38, 95);
             this.lab_maxOpac.Name = "lab_maxOpac";
-            this.lab_maxOpac.Size = new System.Drawing.Size(83, 12);
+            this.lab_maxOpac.Size = new System.Drawing.Size(0, 12);
             this.lab_maxOpac.TabIndex = 3;
-            this.lab_maxOpac.Text = "最大不透明度:";
             // 
             // lab_minOpac
             // 
             this.lab_minOpac.AutoSize = true;
             this.lab_minOpac.Location = new System.Drawing.Point(36, 29);
             this.lab_minOpac.Name = "lab_minOpac";
-            this.lab_minOpac.Size = new System.Drawing.Size(83, 12);
+            this.lab_minOpac.Size = new System.Drawing.Size(0, 12);
             this.lab_minOpac.TabIndex = 2;
-            this.lab_minOpac.Text = "最小不透明度:";
             // 
             // trackBar_maxOpac
             // 
@@ -387,6 +391,48 @@
             this.trackBar_minOpac.Size = new System.Drawing.Size(452, 45);
             this.trackBar_minOpac.TabIndex = 0;
             this.trackBar_minOpac.Value = 10;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.BackColor = System.Drawing.Color.LightGray;
+            this.tabPage1.Controls.Add(this.tab4_btn_cancel);
+            this.tabPage1.Controls.Add(this.tab4_btn_ok);
+            this.tabPage1.Controls.Add(this.tab4_cbox_openRun);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(507, 355);
+            this.tabPage1.TabIndex = 4;
+            this.tabPage1.Text = "其他";
+            // 
+            // tab4_btn_cancel
+            // 
+            this.tab4_btn_cancel.Location = new System.Drawing.Point(422, 321);
+            this.tab4_btn_cancel.Name = "tab4_btn_cancel";
+            this.tab4_btn_cancel.Size = new System.Drawing.Size(75, 23);
+            this.tab4_btn_cancel.TabIndex = 1;
+            this.tab4_btn_cancel.Text = "取消";
+            this.tab4_btn_cancel.UseVisualStyleBackColor = true;
+            // 
+            // tab4_btn_ok
+            // 
+            this.tab4_btn_ok.Location = new System.Drawing.Point(341, 321);
+            this.tab4_btn_ok.Name = "tab4_btn_ok";
+            this.tab4_btn_ok.Size = new System.Drawing.Size(75, 23);
+            this.tab4_btn_ok.TabIndex = 1;
+            this.tab4_btn_ok.Text = "确定";
+            this.tab4_btn_ok.UseVisualStyleBackColor = true;
+            this.tab4_btn_ok.Click += new System.EventHandler(this.tab4_btn_ok_Click);
+            // 
+            // tab4_cbox_openRun
+            // 
+            this.tab4_cbox_openRun.AutoSize = true;
+            this.tab4_cbox_openRun.Location = new System.Drawing.Point(10, 32);
+            this.tab4_cbox_openRun.Name = "tab4_cbox_openRun";
+            this.tab4_cbox_openRun.Size = new System.Drawing.Size(120, 16);
+            this.tab4_cbox_openRun.TabIndex = 0;
+            this.tab4_cbox_openRun.Text = "将程序设为自启动";
+            this.tab4_cbox_openRun.UseVisualStyleBackColor = true;
             // 
             // SettingForm
             // 
@@ -413,6 +459,8 @@
             this.TabPage_setOpacity.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_maxOpac)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_minOpac)).EndInit();
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -444,11 +492,15 @@
         private System.Windows.Forms.TrackBar TrackBar_R;
         private System.Windows.Forms.Button tab2_btn_cancel;
         private System.Windows.Forms.TabPage TabPage_setOpacity;
+        private System.Windows.Forms.Button tab3_btn_cancel;
+        private System.Windows.Forms.Button tab3_btn_ok;
+        private System.Windows.Forms.Label lab_maxOpac;
         private System.Windows.Forms.Label lab_minOpac;
         private System.Windows.Forms.TrackBar trackBar_maxOpac;
         private System.Windows.Forms.TrackBar trackBar_minOpac;
-        private System.Windows.Forms.Label lab_maxOpac;
-        private System.Windows.Forms.Button tab3_btn_cancel;
-        private System.Windows.Forms.Button tab3_btn_ok;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.CheckBox tab4_cbox_openRun;
+        private System.Windows.Forms.Button tab4_btn_cancel;
+        private System.Windows.Forms.Button tab4_btn_ok;
     }
 }
