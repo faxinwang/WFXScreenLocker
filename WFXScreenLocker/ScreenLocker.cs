@@ -113,8 +113,7 @@ namespace LockScreen
             this.FormBorderStyle = FormBorderStyle.None; //不显示边框
             this.BackColor = Utils.getLookScreenColor();
             this.TopMost = true; //设置该窗体为最顶层窗体
-            //this.TopLevel = true;
-            
+
             PWD = Utils.getPassword();
 
             //读取透明度设置并转化为百分值
@@ -197,9 +196,14 @@ namespace LockScreen
             panel1.BackColor = col;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Btn_enter_MouseUp(object sender, MouseEventArgs e)
         {
-            if(PWD == Win32API.MD5_Str(TBox_pwd.Text.Trim()))
+            verifyPassword();
+        }
+
+        private void verifyPassword()
+        {
+            if (PWD == Win32API.MD5_Str(TBox_pwd.Text.Trim()))
             {
                 //关闭当前窗体，打开程序主状体;
                 hook.UnhookWindowsHookEx();
@@ -209,7 +213,8 @@ namespace LockScreen
                 KillTaskManager.Stop();
                 KillTaskManager.Dispose();
                 this.Close();
-            }else
+            }
+            else
             {
                 onWrongPassword();
             }
@@ -224,7 +229,7 @@ namespace LockScreen
         {
             if(e.KeyCode == Keys.Enter)
             {
-                button1_Click(sender, e);
+                verifyPassword();
             }
             else
             {

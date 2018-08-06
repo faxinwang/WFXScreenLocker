@@ -58,7 +58,7 @@
             this.Btn_enter.TabIndex = 1;
             this.Btn_enter.Text = "Enter";
             this.Btn_enter.UseVisualStyleBackColor = true;
-            this.Btn_enter.Click += new System.EventHandler(this.button1_Click);
+            this.Btn_enter.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Btn_enter_MouseUp);
             // 
             // label1
             // 
@@ -93,7 +93,7 @@
             this.label2.Size = new System.Drawing.Size(0, 12);
             this.label2.TabIndex = 3;
             // 
-            // LockScreen
+            // ScreenLocker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -101,7 +101,7 @@
             this.ClientSize = new System.Drawing.Size(1006, 512);
             this.Controls.Add(this.panel1);
             this.ForeColor = System.Drawing.Color.DarkViolet;
-            this.Name = "LockScreen";
+            this.Name = "ScreenLocker";
             this.Opacity = 0.8D;
             this.ShowIcon = false;
             this.Text = "LockScreen";
@@ -116,9 +116,9 @@
         #endregion
 
         private System.Windows.Forms.TextBox TBox_pwd;
-        private System.Windows.Forms.Button Btn_enter;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button Btn_enter;
     }
 }

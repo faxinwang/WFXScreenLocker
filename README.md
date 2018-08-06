@@ -7,7 +7,7 @@
 整个软件只有一个 **WFXScreenLocker.exe**  可执行程序,将该文件放到某一个目录下,然后直接双击运行即可, 无需安装. 首次运行该程序, 由于当前目录下没有配置文件, 程序会自动生成一个配置文件ScreenLocker.ini,里面保存了用户对程序的自定义设置.并提示
 
 >您是第一次运行该程序!
->初始解锁秘密为 : author_wfx 
+>初始解锁秘密为 : author_wfx
 >请牢记!
 
 `author_wfx`为初始解锁屏幕的密码, 过后可以自行修改.
@@ -74,3 +74,7 @@ C:\Users\ _YourUserName_ \AppData\Roaming\Microsoft\Windows\Start Menu\Programs\
 >1. [增加]设置程序为自启动的功能.
 >2. [增加]打开设置界面时自动显示当前各项参数的值.
 >3. [修复]锁屏状态下按ctrl或alt键后密码框无响应的问题.
+
+2018/8/6
+
+>1. 修复点击Enter按钮没反应的问题.
