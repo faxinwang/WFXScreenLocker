@@ -56,6 +56,8 @@ C:\Users\ _YourUserName_ \AppData\Roaming\Microsoft\Windows\Start Menu\Programs\
 
 ![changeOpacity](https://github.com/faxinwang/WFXScreenLocker/raw/master/imgs/changeOpacity.png '修改锁屏窗体透明度')
 
+![code](https://github.com/faxinwang/WFXScreenLocker/raw/master/imgs/code.png )
+
 ## 更新
 
 2018/4/4
